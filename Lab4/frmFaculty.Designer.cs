@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFacultyID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -35,10 +36,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFacultyName = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvFaculty = new System.Windows.Forms.DataGridView();
+            this.FacultyID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FacultyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProfessor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFaculty)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -52,6 +58,7 @@
             // 
             // txtFacultyID
             // 
+            this.txtFacultyID.Enabled = false;
             this.txtFacultyID.Location = new System.Drawing.Point(137, 128);
             this.txtFacultyID.Name = "txtFacultyID";
             this.txtFacultyID.Size = new System.Drawing.Size(100, 20);
@@ -91,7 +98,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(39, 378);
+            this.btnUpdate.Location = new System.Drawing.Point(39, 341);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(99, 42);
             this.btnUpdate.TabIndex = 2;
@@ -99,13 +106,43 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // dataGridView1
+            // dgvFaculty
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(379, 37);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(367, 363);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvFaculty.AllowUserToAddRows = false;
+            this.dgvFaculty.AllowUserToDeleteRows = false;
+            this.dgvFaculty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvFaculty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFaculty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FacultyID,
+            this.FacultyName,
+            this.TotalProfessor});
+            this.dgvFaculty.Location = new System.Drawing.Point(326, 79);
+            this.dgvFaculty.Name = "dgvFaculty";
+            this.dgvFaculty.ReadOnly = true;
+            this.dgvFaculty.Size = new System.Drawing.Size(444, 267);
+            this.dgvFaculty.TabIndex = 3;
+            this.dgvFaculty.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFaculty_CellClick);
+            // 
+            // FacultyID
+            // 
+            this.FacultyID.DataPropertyName = "FacultyID";
+            this.FacultyID.HeaderText = "Mã Khoa";
+            this.FacultyID.Name = "FacultyID";
+            this.FacultyID.ReadOnly = true;
+            // 
+            // FacultyName
+            // 
+            this.FacultyName.DataPropertyName = "FacultyName";
+            this.FacultyName.HeaderText = "Tên Khoa";
+            this.FacultyName.Name = "FacultyName";
+            this.FacultyName.ReadOnly = true;
+            // 
+            // TotalProfessor
+            // 
+            this.TotalProfessor.DataPropertyName = "TotalProfessor";
+            this.TotalProfessor.HeaderText = "Tổng Số GS";
+            this.TotalProfessor.Name = "TotalProfessor";
+            this.TotalProfessor.ReadOnly = true;
             // 
             // label4
             // 
@@ -118,19 +155,31 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(173, 378);
+            this.btnRemove.Location = new System.Drawing.Point(183, 341);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(99, 42);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Xoá";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(671, 374);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(99, 42);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmFaculty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvFaculty);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtFacultyName);
@@ -143,7 +192,7 @@
             this.Name = "frmFaculty";
             this.Text = "frmFaculty";
             this.Load += new System.EventHandler(this.frmFaculty_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFaculty)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,8 +207,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFacultyName;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvFaculty;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FacultyID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FacultyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProfessor;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

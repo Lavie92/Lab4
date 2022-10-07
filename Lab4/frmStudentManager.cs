@@ -120,7 +120,6 @@ namespace Lab4
 
         private void dgvStudent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row;
             txtStudentID.Text = dgvStudent.CurrentRow.Cells[0].Value.ToString();
             txtStudentName.Text = dgvStudent.CurrentRow.Cells[1].Value.ToString();
             txtAverageScore.Text = dgvStudent.CurrentRow.Cells[2].Value.ToString();
@@ -146,6 +145,41 @@ namespace Lab4
         {
             frmFaculty frmFaculty = new frmFaculty();
             frmFaculty.Show();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+
+        private void btnFacultyManager_Click_1(object sender, EventArgs e)
+        {
+            frmFaculty frmFaculty = new frmFaculty();
+            frmFaculty.Show();
+        }
+        private void quảnLýIkhoaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFaculty frmFaculty = new frmFaculty();
+            frmFaculty.Show();
+        }
+
+        //private void btnSearch_Click1(object sender, EventArgs e)
+        //{
+        //    frmStudentSearch frmStudentSearch = new frmStudentSearch();
+        //    frmStudentSearch.Show();
+        //}
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
+        {
+            frmStudentSearch frmStudentSearch = new frmStudentSearch();
+            frmStudentSearch.Show();
+        }
+
+        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStudentSearch frmStudentSearch = new frmStudentSearch();
+            frmStudentSearch.Show();
         }
     }
 }
